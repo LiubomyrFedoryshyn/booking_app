@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import Link from "next/link";
 import Head from "next/head";
 import BookingBar from "./BookingBar";
 
@@ -16,9 +15,10 @@ const Layout = ({ children, title = "Booking Site" }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
 
-    <BookingBar />
-
-    {children}
+    <div className="container mx-auto">
+      <BookingBar />
+      {children}
+    </div>
   </div>
 );
 
