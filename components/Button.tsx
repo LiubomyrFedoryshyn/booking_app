@@ -2,15 +2,13 @@ import React from "react";
 
 type Button = {
   label?: string;
-  onClick: () => void;
   buttonDisabled: boolean;
 };
 
-const Button = ({ label = "Submit", onClick, buttonDisabled }: Button) => {
+const Button = ({ label = "Submit", buttonDisabled }: Button) => {
   return (
     <button
       type="submit"
-      onClick={onClick}
       disabled={buttonDisabled}
       className="btn rounded-full"
     >

@@ -7,4 +7,9 @@
 export type FormProps = {
   label?: string;
   placeholder?: string;
+  required?: boolean;
 };
+
+export interface IFormValues {
+  Destination: "string";
+}
