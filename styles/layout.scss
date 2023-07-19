@@ -14,12 +14,12 @@
 
 input,
 input::placeholder {
-  color: $made-color-gray-035;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  outline: none;
-  width: 170px;
+  @include inputStyles;
+}
+
+input {
+  color: $black;
+  font-weight: 600;
 }
 
 .btn {
@@ -36,6 +36,10 @@ input::placeholder {
   }
   &:disabled {
     background-color: $disabled-button;
+    cursor: not-allowed;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 

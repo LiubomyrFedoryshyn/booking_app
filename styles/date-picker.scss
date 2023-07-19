@@ -1,0 +1,20 @@
+.date-picker {
+  outline: none;
+  input + button {
+    display: none;
+  }
+  input,
+  input::placeholder {
+    outline: none;
+    @include inputStyles;
+    width: 220px;
+  }
+
+  input {
+    color: $black;
+    font-weight: 600;
+    &.focus\:ring:focus {
+      box-shadow: none;
+    }
+  }
+}

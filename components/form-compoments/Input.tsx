@@ -1,6 +1,8 @@
 import React from "react";
 import { Path, UseFormRegister } from "react-hook-form";
 import { IFormValues } from "../../interfaces";
+import { REQUIRED_ERROR, TEXT_ERROR } from "../../utils/constants";
+import { TEXT_ONLY } from "../../utils/regEx";
 
 type InputProps = {
   label: Path<IFormValues>;
@@ -22,10 +24,10 @@ const Input = ({
     <div>
       <input
         {...register(label, {
-          required: required ? "Can’t be blank" : false,
+          required: required ? REQUIRED_ERROR : false,
           pattern: {
-            value: /^[A-Za-z]+$/i,
-            message: "Only text message allowed",
+            value: TEXT_ONLY,
+            message: TEXT_ERROR,
           },
         })}
         name="Destination"

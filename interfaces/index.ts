@@ -12,4 +12,5 @@ export type FormProps = {
 
 export interface IFormValues {
   Destination: "string";
+  Dates: { endDate: string; startDate: string };
 }

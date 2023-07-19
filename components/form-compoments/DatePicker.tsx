@@ -1,13 +1,52 @@
-import React from "react";
-import { FormProps } from "../../interfaces";
+import React, { useState } from "react";
+import { Path, UseFormRegister, Controller } from "react-hook-form";
+import Datepicker from "react-tailwindcss-datepicker";
+import { FormProps, IFormValues } from "../../interfaces";
+import { REQUIRED_ERROR } from "../../utils/constants";
+import { error } from "console";
 
-const DatePicker = ({ label, placeholder = "Pick up a date" }: FormProps) => (
-  <div>
-    {label && <label className="label">{label}</label>}
-    <div>
-      <input className="input" type="text" placeholder={placeholder} />
+type InputProps = {
+  label: string;
+  required: boolean;
+  placeholder: string;
+  errors: any;
+  control: any;
+  name: string;
+};
+
+const DatePicker = ({
+  label,
+  required,
+  errors,
+  control,
+  placeholder = "Pick up a date",
+}: InputProps) => {
+  return (
+    <div className="date-picker">
+      {label && <label className="label">{label}</label>}
+      <Controller
+        name="Dates"
+        control={control}
+        rules={{ required: required ? REQUIRED_ERROR : false }}
+        render={({ field: { onChange, value } }) => {
+          return (
+            <Datepicker
+              separator={"-"}
+              readOnly
+              minDate={new Date()}
+              startWeekOn="mon"
+              placeholder={placeholder}
+              primaryColor={"red"}
+              value={value}
+              displayFormat={"MMM-DD"}
+              onChange={onChange}
+            />
+          );
+        }}
+      />
+      {errors.Dates && <span className="error">{errors.Dates.message}</span>}
     </div>
-  </div>
-);
+  );
+};
 
 export default DatePicker;

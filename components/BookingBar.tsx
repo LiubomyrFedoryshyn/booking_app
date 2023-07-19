@@ -1,5 +1,5 @@
 import React from "react";
-import { Path, useForm, UseFormRegister } from "react-hook-form";
+import { Path, useForm } from "react-hook-form";
 import { Input, DatePicker, RoomSelector } from "./form-compoments";
 import Button from "./Button";
 import { IFormValues } from "../interfaces";
@@ -8,17 +8,17 @@ const BookingBar = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    control,
+    formState: { errors, isValid },
   } = useForm<IFormValues>();
   const onSubmit = (data: IFormValues) => {
     alert(JSON.stringify(data));
-    console.log(errors.Destination);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="rounded-xl card flex justify-between items-center my-4 mx-auto">
-        <div className="flex justify-between">
+        <div className="flex justify-between w-full">
           <Input
             errors={errors}
             register={register}
@@ -28,16 +28,25 @@ const BookingBar = () => {
           />
 
           <DatePicker
+            control={control}
+            errors={errors}
+            name="Dates"
+            required
             label="Stay Dates"
-            placeholder="What does should we block?"
+            placeholder="What dates should we block?"
           />
+
           <RoomSelector
             label="Room & Guests"
             placeholder="How may rooms do you need?"
           />
           {/* <Input label="Destination" placeholder="Enter first 6 digits" /> */}
         </div>
-        <Button buttonDisabled={false} label="Search" />
+        <Button
+          buttonDisabled={false}
+          // buttonDisabled={!isValid}
+          label="Search"
+        />
       </div>
     </form>
   );
