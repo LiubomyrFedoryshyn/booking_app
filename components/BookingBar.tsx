@@ -9,6 +9,7 @@ const BookingBar = () => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors, isValid },
   } = useForm<IFormValues>();
   const onSubmit = (data: IFormValues) => {
@@ -37,7 +38,11 @@ const BookingBar = () => {
           />
 
           <RoomSelector
-            label="Room & Guests"
+            required
+            setValue={setValue}
+            errors={errors}
+            register={register}
+            label="RoomGuests"
             placeholder="How may rooms do you need?"
           />
           {/* <Input label="Destination" placeholder="Enter first 6 digits" /> */}

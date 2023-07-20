@@ -1,13 +1,31 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useRef } from "react";
+import { Path, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import classNames from "classnames";
 import { Popover, Transition } from "@headlessui/react";
-import { FormProps, IRoomValues } from "../../interfaces";
+import { IFormValues, IRoomValues } from "../../interfaces";
 import { BedIcon, MinusIcon, PlusIcon } from "../../assets/svg";
-import { MAX_PEOPLE, ROOMS_COUNT } from "../../utils/constants";
+import { MAX_PEOPLE, REQUIRED_ERROR, ROOMS_COUNT } from "../../utils/constants";
 
 const ROOMS_OBJ = { adults: 0, children: 0 };
 
-const RoomSelector = ({ label, placeholder = "Set a value" }: FormProps) => {
+type InputProps = {
+  label: Path<IFormValues>;
+  register: UseFormRegister<IFormValues>;
+  placeholder: string;
+  errors: any;
+  required?: boolean;
+  setValue: UseFormSetValue<IFormValues>;
+};
+
+const RoomSelector = ({
+  label,
+  errors,
+  required,
+  register,
+  setValue,
+  placeholder = "Set a value",
+}: InputProps) => {
+  const inputRef = useRef(null);
   const [roomsDetails, setRoomsDetails] = useState<IRoomValues[]>([ROOMS_OBJ]);
 
   const changeRooms = (i: number) => {
@@ -31,16 +49,37 @@ const RoomSelector = ({ label, placeholder = "Set a value" }: FormProps) => {
         [valueType]: funcType === "increment" ? ++value : --value,
       };
       setRoomsDetails(newArray);
+      console.log(newArray);
+      const adults = newArray.map((el) => el.adults);
+      const children = newArray.map((el) => el.children);
+      setValue(
+        label,
+        `${newArray.length} Rooms, ${calcValues(adults)} adults, ${calcValues(
+          children
+        )} children`,
+        { shouldValidate: true }
+      );
     }
   };
 
+  const calcValues = (arr) => arr.reduce((a, b) => a + b);
+
   return (
     <div>
-      {label && <label className="label">{label}</label>}
+      {label && <label className="label">Room & Guests</label>}
       <div>
         <Popover className="relative">
           <Popover.Button>
-            <span className="description ">{placeholder}</span>
+            <input
+              {...register(label, {
+                required: required ? REQUIRED_ERROR : false,
+              })}
+              ref={inputRef}
+              name={label}
+              className="input"
+              type="text"
+              placeholder={placeholder}
+            />
           </Popover.Button>
 
           <Transition
@@ -159,6 +198,9 @@ const RoomSelector = ({ label, placeholder = "Set a value" }: FormProps) => {
           </Transition>
         </Popover>
       </div>
+      {errors.RoomGuests && (
+        <span className="error">{errors.RoomGuests.message}</span>
+      )}
     </div>
   );
 };
