@@ -78,10 +78,10 @@ const RoomSelector = ({
         adults
       )} adults, ${calcValues(children)} children`;
       inputRef.current.value = inputValue;
-      setValue(name, inputValue, { shouldValidate: true });
+      setValue(name, inputValue, { shouldValidate: true, shouldDirty: true });
     } else {
       inputRef.current.value = "";
-      setValue(name, "", { shouldValidate: true });
+      setValue(name, "", { shouldValidate: true, shouldDirty: true });
     }
   };
 
