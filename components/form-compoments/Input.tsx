@@ -35,8 +35,10 @@ const Input = ({
       <input
         {...register(name, {
           minLength: {
-            value: MIN_INPUT_LENGTH,
-            message: `Should be minimum ${MIN_INPUT_LENGTH} characters`,
+            value: type === "number" ? MIN_INPUT_LENGTH : 2, // 2 is just a size of possible destination, chould be cpecified
+            message: `Should be minimum ${
+              type === "number" ? MIN_INPUT_LENGTH : 2 //s same as above
+            } characters`,
           },
           required: required ? REQUIRED_ERROR : false,
           pattern: {
