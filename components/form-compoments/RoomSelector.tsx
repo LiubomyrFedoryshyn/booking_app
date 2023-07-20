@@ -92,7 +92,7 @@ const RoomSelector = ({
       {label && <label className="label">{label}</label>}
       <div>
         <Popover className="relative">
-          <Popover.Button>
+          <Popover.Button className="outline-none">
             <input
               {...register(name, {
                 required: required ? REQUIRED_ERROR : false,
