@@ -61,10 +61,8 @@ input {
   }
   &:disabled {
     background-color: $disabled-button;
+    opacity: 50%;
     cursor: not-allowed;
-    &:hover {
-      opacity: 1;
-    }
   }
 }
 
