@@ -1,0 +1,36 @@
+.icons-wrapper {
+  svg {
+    cursor: pointer;
+    fill: $made-color-gray-035;
+    &:hover,
+    &.active {
+      fill: $orange;
+    }
+    &:hover {
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+  }
+  svg:nth-child(1) {
+    fill: $orange;
+    pointer-events: none;
+  }
+  svg:nth-child(2) {
+    margin: 0 16px;
+  }
+}
+
+.selector-body {
+  svg {
+    fill: $made-color-gray-035;
+    cursor: pointer;
+    &:hover,
+    &.active {
+      fill: $orange;
+    }
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}

@@ -12,6 +12,23 @@
   line-height: 14px;
 }
 
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.sub-title {
+  text-overflow: ellipsis;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.description {
+  @include inputStyles;
+}
+
 input,
 input::placeholder {
   @include inputStyles;
@@ -23,7 +40,7 @@ input {
 }
 
 .btn {
-  background-color: $orange-button;
+  background-color: $orange;
   color: $white;
   padding: 0 32px;
   font-size: 16px;
@@ -49,4 +66,9 @@ input {
   font-size: 12px;
   font-weight: 400;
   line-height: 14px;
+}
+
+.separator {
+  height: 1px;
+  background-color: $separator-line;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Path, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Input, DatePicker, RoomSelector } from "./form-compoments";
 import Button from "./Button";
 import { IFormValues } from "../interfaces";

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Path, UseFormRegister, Controller } from "react-hook-form";
+import React from "react";
+import { Controller } from "react-hook-form";
 import Datepicker from "react-tailwindcss-datepicker";
-import { FormProps, IFormValues } from "../../interfaces";
 import { REQUIRED_ERROR } from "../../utils/constants";
-import { error } from "console";
 
 type InputProps = {
   label: string;
