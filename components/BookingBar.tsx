@@ -46,7 +46,7 @@ const BookingBar = () => {
             placeholder="How may rooms do you need?"
           />
           <Input
-            type="number"
+            numberType
             errors={errors}
             register={register}
             required

@@ -51,13 +51,13 @@ const RoomSelector = ({
     i: number,
     value: number,
     valueType: string,
-    funcType
+    funcType?: boolean
   ) => {
     if (i >= 0 && i < roomsDetails.length) {
       const newArray = [...roomsDetails];
       newArray[i] = {
         ...newArray[i],
-        [valueType]: funcType === "increment" ? ++value : --value,
+        [valueType]: funcType ? ++value : --value,
       };
       setRoomsDetails(newArray);
     }
@@ -151,12 +151,7 @@ const RoomSelector = ({
                                   disabled: el.adults < 1,
                                 })}
                                 onClick={() =>
-                                  changeValue(
-                                    i,
-                                    el.adults,
-                                    "adults",
-                                    "decrement"
-                                  )
+                                  changeValue(i, el.adults, "adults")
                                 }
                               />
                               <span className="title mx-4">{el.adults}</span>
@@ -166,12 +161,7 @@ const RoomSelector = ({
                                     el.children + el.adults >= MAX_PEOPLE,
                                 })}
                                 onClick={() =>
-                                  changeValue(
-                                    i,
-                                    el.adults,
-                                    "adults",
-                                    "increment"
-                                  )
+                                  changeValue(i, el.adults, "adults", true)
                                 }
                               />
                             </div>
@@ -187,12 +177,7 @@ const RoomSelector = ({
                                   disabled: el.children < 1,
                                 })}
                                 onClick={() =>
-                                  changeValue(
-                                    i,
-                                    el.children,
-                                    "children",
-                                    "decrement"
-                                  )
+                                  changeValue(i, el.children, "children")
                                 }
                               />
                               <span className="title mx-4">{el.children}</span>
@@ -202,12 +187,7 @@ const RoomSelector = ({
                                     el.children + el.adults >= MAX_PEOPLE,
                                 })}
                                 onClick={() =>
-                                  changeValue(
-                                    i,
-                                    el.children,
-                                    "children",
-                                    "increment"
-                                  )
+                                  changeValue(i, el.children, "children", true)
                                 }
                               />
                             </div>

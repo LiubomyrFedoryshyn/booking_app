@@ -17,7 +17,7 @@ type InputProps = {
   required: boolean;
   placeholder: string;
   errors: any;
-  type?: string;
+  numberType?: boolean;
 };
 
 const Input = ({
@@ -26,7 +26,7 @@ const Input = ({
   register,
   required,
   errors,
-  type,
+  numberType,
   placeholder = "Enter a value",
 }: InputProps) => (
   <div className="mb-6 lg:mb-0">
@@ -35,23 +35,23 @@ const Input = ({
       <input
         {...register(name, {
           minLength: {
-            value: type === "number" ? MIN_INPUT_LENGTH : 2, // 2 is just a size of possible destination, chould be cpecified
+            value: numberType ? MIN_INPUT_LENGTH : 2, // 2 is just a size of possible destination, chould be cpecified
             message: `Should be minimum ${
-              type === "number" ? MIN_INPUT_LENGTH : 2 //s same as above
+              numberType ? MIN_INPUT_LENGTH : 2 //s same as above
             } characters`,
           },
           required: required ? REQUIRED_ERROR : false,
           pattern: {
-            value: type === "number" ? NUMBERS_ONLY : TEXT_ONLY,
-            message: type === "number" ? NUMBER_ERROR : TEXT_ERROR,
+            value: numberType ? NUMBERS_ONLY : TEXT_ONLY,
+            message: numberType ? NUMBER_ERROR : TEXT_ERROR,
           },
         })}
         name={name}
         className={classNames("input", {
-          "small-input": type === "number",
+          "small-input": numberType,
         })}
         type={"text"}
-        maxLength={type === "number" ? 6 : 30}
+        maxLength={numberType ? 6 : 30}
         placeholder={placeholder}
       />
     </div>
