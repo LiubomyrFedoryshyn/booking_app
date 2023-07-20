@@ -53,7 +53,7 @@ const RoomSelector = ({ label, placeholder = "Set a value" }: FormProps) => {
             leaveTo="opacity-0 translate-y-1"
           >
             <Popover.Panel className="absolute left-1/2 z-10 mt-10 flex -translate-x-1/2 px-4">
-              <div className="w-80 flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+              <div className="w-80 flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg">
                 <div className="group relative flex gap-x-6 rounded-lg py-5 px-6 hover:bg-gray-50 divide-y">
                   <div className="flex justify-between items-center w-full">
                     <h5 className="title">Rooms</h5>
