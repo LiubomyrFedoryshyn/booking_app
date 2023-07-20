@@ -2,6 +2,7 @@ import React from "react";
 import { Path, UseFormRegister } from "react-hook-form";
 import { IFormValues } from "../../interfaces";
 import {
+  MIN_INPUT_LENGTH,
   NUMBER_ERROR,
   REQUIRED_ERROR,
   TEXT_ERROR,
@@ -32,6 +33,10 @@ const Input = ({
     <div>
       <input
         {...register(name, {
+          minLength: {
+            value: MIN_INPUT_LENGTH,
+            message: `Should be minimum ${MIN_INPUT_LENGTH} characters`,
+          },
           required: required ? REQUIRED_ERROR : false,
           pattern: {
             value: type === "number" ? NUMBERS_ONLY : TEXT_ONLY,

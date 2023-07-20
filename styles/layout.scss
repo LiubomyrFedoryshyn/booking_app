@@ -37,6 +37,10 @@ input::placeholder {
 input {
   color: $black;
   font-weight: 600;
+  &.large-input,
+  &.large-input::placeholder {
+    width: 228px;
+  }
 }
 
 .btn {

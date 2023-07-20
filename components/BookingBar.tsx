@@ -10,7 +10,7 @@ const BookingBar = () => {
     handleSubmit,
     control,
     setValue,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
   } = useForm<IFormValues>();
   const onSubmit = (data: IFormValues) => {
     alert(JSON.stringify(data));
@@ -55,11 +55,7 @@ const BookingBar = () => {
             placeholder="Enter first 6 digits"
           />
         </div>
-        <Button
-          buttonDisabled={false}
-          // buttonDisabled={!isValid}
-          label="Search"
-        />
+        <Button buttonDisabled={!isValid && !isDirty} label="Search" />
       </div>
     </form>
   );

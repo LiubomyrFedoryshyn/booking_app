@@ -99,7 +99,7 @@ const RoomSelector = ({
               })}
               ref={inputRef}
               name={name}
-              className="input"
+              className="input large-input"
               type="text"
               placeholder={placeholder}
             />

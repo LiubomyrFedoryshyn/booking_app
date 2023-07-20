@@ -7,3 +7,5 @@ export const NUMBER_ERROR = "Only  numbers allowed";
 export const ROOMS_COUNT = 3;
 
 export const MAX_PEOPLE = 9;
+
+export const MIN_INPUT_LENGTH = 6;
