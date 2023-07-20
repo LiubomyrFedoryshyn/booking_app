@@ -1,13 +1,13 @@
 import React from "react";
 import { Path, UseFormRegister } from "react-hook-form";
-import { IFormValues } from "../../interfaces";
+import { IFormValues } from "@interfaces/index";
 import {
   MIN_INPUT_LENGTH,
   NUMBER_ERROR,
   REQUIRED_ERROR,
   TEXT_ERROR,
-} from "../../utils/constants";
-import { NUMBERS_ONLY, TEXT_ONLY } from "../../utils/regEx";
+} from "@utils/constants";
+import { NUMBERS_ONLY, TEXT_ONLY } from "@utils/regEx";
 import classNames from "classnames";
 
 type InputProps = {

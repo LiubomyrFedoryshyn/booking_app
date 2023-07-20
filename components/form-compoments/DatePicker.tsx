@@ -1,7 +1,7 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 import Datepicker from "react-tailwindcss-datepicker";
-import { REQUIRED_ERROR } from "../../utils/constants";
+import { REQUIRED_ERROR } from "@utils/constants";
 
 type InputProps = {
   label: string;

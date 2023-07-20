@@ -2,9 +2,9 @@ import React, { Fragment, useState, useRef, useEffect } from "react";
 import { Path, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import classNames from "classnames";
 import { Popover, Transition } from "@headlessui/react";
-import { IFormValues, IRoomValues } from "../../interfaces";
-import { BedIcon, MinusIcon, PlusIcon } from "../../assets/svg";
-import { MAX_PEOPLE, REQUIRED_ERROR, ROOMS_COUNT } from "../../utils/constants";
+import { IFormValues, IRoomValues } from "@interfaces/index";
+import { BedIcon, MinusIcon, PlusIcon } from "@assets/svg";
+import { MAX_PEOPLE, REQUIRED_ERROR, ROOMS_COUNT } from "@utils/constants";
 
 const ROOMS_OBJ = { adults: 0, children: 0 };
 

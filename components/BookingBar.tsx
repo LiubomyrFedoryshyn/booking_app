@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Input, DatePicker, RoomSelector } from "./form-compoments";
+import { Input, DatePicker, RoomSelector } from "@components/form-compoments";
 import Button from "./Button";
-import { IFormValues } from "../interfaces";
+import { IFormValues } from "@interfaces/index";
 
 const BookingBar = () => {
   const {

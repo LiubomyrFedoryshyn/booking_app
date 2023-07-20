@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import Head from "next/head";
-import BookingBar from "./BookingBar";
+import BookingBar from "@components/BookingBar";
 
 type Props = {
   children?: ReactNode;
