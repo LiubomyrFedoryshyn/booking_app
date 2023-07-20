@@ -94,6 +94,7 @@ const RoomSelector = ({
         <Popover className="relative">
           <Popover.Button className="outline-none">
             <input
+              readOnly
               {...register(name, {
                 required: required ? REQUIRED_ERROR : false,
               })}
