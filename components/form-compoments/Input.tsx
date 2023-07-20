@@ -1,44 +1,51 @@
 import React from "react";
 import { Path, UseFormRegister } from "react-hook-form";
 import { IFormValues } from "../../interfaces";
-import { REQUIRED_ERROR, TEXT_ERROR } from "../../utils/constants";
-import { TEXT_ONLY } from "../../utils/regEx";
+import {
+  NUMBER_ERROR,
+  REQUIRED_ERROR,
+  TEXT_ERROR,
+} from "../../utils/constants";
+import { NUMBERS_ONLY, TEXT_ONLY } from "../../utils/regEx";
 
 type InputProps = {
-  label: Path<IFormValues>;
+  name: Path<IFormValues>;
+  label: string;
   register: UseFormRegister<IFormValues>;
   required: boolean;
   placeholder: string;
   errors: any;
+  type?: string;
 };
 
 const Input = ({
   label,
+  name,
   register,
   required,
   errors,
-  placeholder = "Place some text here",
+  type,
+  placeholder = "Enter a value",
 }: InputProps) => (
   <div>
     {label && <label className="label">{label}</label>}
     <div>
       <input
-        {...register(label, {
+        {...register(name, {
           required: required ? REQUIRED_ERROR : false,
           pattern: {
-            value: TEXT_ONLY,
-            message: TEXT_ERROR,
+            value: type === "number" ? NUMBERS_ONLY : TEXT_ONLY,
+            message: type === "number" ? NUMBER_ERROR : TEXT_ERROR,
           },
         })}
-        name="Destination"
+        name={name}
         className="input"
-        type="text"
+        type={"text"}
+        maxLength={type === "number" ? 6 : 30}
         placeholder={placeholder}
       />
     </div>
-    {errors.Destination && (
-      <span className="error">{errors.Destination.message}</span>
-    )}
+    {errors[name] && <span className="error">{errors[name].message}</span>}
   </div>
 );
 

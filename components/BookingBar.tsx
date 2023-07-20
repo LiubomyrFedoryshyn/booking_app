@@ -25,9 +25,9 @@ const BookingBar = () => {
             register={register}
             required
             label="Destination"
+            name="Destination"
             placeholder="Where can we take you?"
           />
-
           <DatePicker
             control={control}
             errors={errors}
@@ -36,16 +36,24 @@ const BookingBar = () => {
             label="Stay Dates"
             placeholder="What dates should we block?"
           />
-
           <RoomSelector
             required
             setValue={setValue}
             errors={errors}
             register={register}
-            label="RoomGuests"
+            name="RoomGuests"
+            label="Room & Guests"
             placeholder="How may rooms do you need?"
           />
-          {/* <Input label="Destination" placeholder="Enter first 6 digits" /> */}
+          <Input
+            type="number"
+            errors={errors}
+            register={register}
+            required
+            name="BIN"
+            label="Verify your BIN"
+            placeholder="Enter first 6 digits"
+          />
         </div>
         <Button
           buttonDisabled={false}

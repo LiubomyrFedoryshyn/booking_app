@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState, useRef, useEffect } from "react";
 import { Path, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import classNames from "classnames";
 import { Popover, Transition } from "@headlessui/react";
@@ -9,7 +9,8 @@ import { MAX_PEOPLE, REQUIRED_ERROR, ROOMS_COUNT } from "../../utils/constants";
 const ROOMS_OBJ = { adults: 0, children: 0 };
 
 type InputProps = {
-  label: Path<IFormValues>;
+  name: Path<IFormValues>;
+  label: string;
   register: UseFormRegister<IFormValues>;
   placeholder: string;
   errors: any;
@@ -19,6 +20,7 @@ type InputProps = {
 
 const RoomSelector = ({
   label,
+  name,
   errors,
   required,
   register,
@@ -26,7 +28,16 @@ const RoomSelector = ({
   placeholder = "Set a value",
 }: InputProps) => {
   const inputRef = useRef(null);
+  const isInitialRender = useRef(true);
   const [roomsDetails, setRoomsDetails] = useState<IRoomValues[]>([ROOMS_OBJ]);
+
+  useEffect(() => {
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return; // Skip  useEffect on the first render
+    }
+    setInputValue();
+  }, [roomsDetails]);
 
   const changeRooms = (i: number) => {
     if (roomsDetails.length > i && roomsDetails.length > 1) {
@@ -49,16 +60,28 @@ const RoomSelector = ({
         [valueType]: funcType === "increment" ? ++value : --value,
       };
       setRoomsDetails(newArray);
-      console.log(newArray);
-      const adults = newArray.map((el) => el.adults);
-      const children = newArray.map((el) => el.children);
-      setValue(
-        label,
-        `${newArray.length} Rooms, ${calcValues(adults)} adults, ${calcValues(
-          children
-        )} children`,
-        { shouldValidate: true }
-      );
+    }
+  };
+
+  const setInputValue = () => {
+    const adults = roomsDetails.map((el) => el.adults);
+    const children = roomsDetails.map((el) => el.children);
+    const containEmptyObject = roomsDetails.some(
+      (obj) => obj.children === 0 && obj.adults === 0
+    );
+
+    if (
+      (calcValues(adults) > 0 || calcValues(children) > 0) &&
+      !containEmptyObject
+    ) {
+      const inputValue = `${roomsDetails.length} Rooms, ${calcValues(
+        adults
+      )} adults, ${calcValues(children)} children`;
+      inputRef.current.value = inputValue;
+      setValue(name, inputValue, { shouldValidate: true });
+    } else {
+      inputRef.current.value = "";
+      setValue(name, "", { shouldValidate: true });
     }
   };
 
@@ -66,16 +89,16 @@ const RoomSelector = ({
 
   return (
     <div>
-      {label && <label className="label">Room & Guests</label>}
+      {label && <label className="label">{label}</label>}
       <div>
         <Popover className="relative">
           <Popover.Button>
             <input
-              {...register(label, {
+              {...register(name, {
                 required: required ? REQUIRED_ERROR : false,
               })}
               ref={inputRef}
-              name={label}
+              name={name}
               className="input"
               type="text"
               placeholder={placeholder}

@@ -2,6 +2,7 @@ export interface IFormValues {
   Destination: "string";
   Dates: { endDate: string; startDate: string };
   RoomGuests: IRoomValues[];
+  BIN: string;
 }
 
 export interface IRoomValues {
