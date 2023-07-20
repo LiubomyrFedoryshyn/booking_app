@@ -2,8 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import "./mixins/input-mixins.scss";
 @import "./variables.scss";
+@import "./mixins/input-mixins.scss";
 @import "./main-styles.scss";
 @import "./layout.scss";
 @import "./components/date-picker.scss";
