@@ -39,7 +39,11 @@ input {
   font-weight: 600;
   &.large-input,
   &.large-input::placeholder {
-    width: 228px;
+    width: 226px;
+  }
+  &.small-input,
+  &.small-input::placeholder {
+    width: 125px;
   }
 }
 

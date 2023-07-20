@@ -8,6 +8,7 @@ import {
   TEXT_ERROR,
 } from "../../utils/constants";
 import { NUMBERS_ONLY, TEXT_ONLY } from "../../utils/regEx";
+import classNames from "classnames";
 
 type InputProps = {
   name: Path<IFormValues>;
@@ -28,7 +29,7 @@ const Input = ({
   type,
   placeholder = "Enter a value",
 }: InputProps) => (
-  <div>
+  <div className="mb-6 lg:mb-0">
     {label && <label className="label">{label}</label>}
     <div>
       <input
@@ -44,7 +45,9 @@ const Input = ({
           },
         })}
         name={name}
-        className="input"
+        className={classNames("input", {
+          "small-input": type === "number",
+        })}
         type={"text"}
         maxLength={type === "number" ? 6 : 30}
         placeholder={placeholder}

@@ -18,8 +18,8 @@ const BookingBar = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="rounded-xl card flex justify-between items-center my-4 mx-auto">
-        <div className="flex justify-between w-full">
+      <div className="rounded-xl card flex justify-center items-center my-4 mx-auto flex-wrap lg:justify-between lg:flex-nowrap">
+        <div className="flex justify-between w-full flex-wrap">
           <Input
             errors={errors}
             register={register}
@@ -55,7 +55,11 @@ const BookingBar = () => {
             placeholder="Enter first 6 digits"
           />
         </div>
-        <Button buttonDisabled={!isValid && !isDirty} label="Search" />
+        <Button
+          className="btn rounded-full lg:ml-24"
+          buttonDisabled={!isValid && !isDirty}
+          label="Search"
+        />
       </div>
     </form>
   );

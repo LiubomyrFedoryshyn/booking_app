@@ -88,7 +88,7 @@ const RoomSelector = ({
   const calcValues = (arr) => arr.reduce((a, b) => a + b);
 
   return (
-    <div>
+    <div className="mb-6 lg:mb-0">
       {label && <label className="label">{label}</label>}
       <div>
         <Popover className="relative">

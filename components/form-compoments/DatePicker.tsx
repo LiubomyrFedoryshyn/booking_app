@@ -20,7 +20,7 @@ const DatePicker = ({
   placeholder = "Pick up a date",
 }: InputProps) => {
   return (
-    <div className="date-picker">
+    <div className="date-picker mb-6 lg:mb-0">
       {label && <label className="label">{label}</label>}
       <Controller
         name="Dates"
