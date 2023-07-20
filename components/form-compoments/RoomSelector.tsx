@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useRef, useEffect } from "react";
 import { Path, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import classNames from "classnames";
-import { Popover, Transition } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import { IFormValues, IRoomValues } from "@interfaces/index";
 import { BedIcon, MinusIcon, PlusIcon } from "@assets/svg";
 import { MAX_PEOPLE, REQUIRED_ERROR, ROOMS_COUNT } from "@utils/constants";
@@ -91,8 +91,8 @@ const RoomSelector = ({
     <div className="mb-6 lg:mb-0">
       {label && <label className="label">{label}</label>}
       <div>
-        <Popover className="relative">
-          <Popover.Button className="outline-none">
+        <Menu as="div" className="relative">
+          <Menu.Button className="outline-none">
             <input
               readOnly
               {...register(name, {
@@ -104,7 +104,7 @@ const RoomSelector = ({
               type="text"
               placeholder={placeholder}
             />
-          </Popover.Button>
+          </Menu.Button>
 
           <Transition
             as={Fragment}
@@ -115,7 +115,7 @@ const RoomSelector = ({
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute left-1/2 z-10 mt-10 flex -translate-x-1/2 px-4">
+            <Menu.Items className="absolute left-1/2 z-10 mt-10 flex -translate-x-1/2 px-4">
               <div className="w-80 flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg">
                 <div className="group relative flex gap-x-6 rounded-lg py-5 px-6 hover:bg-gray-50 divide-y">
                   <div className="flex justify-between items-center w-full">
@@ -218,9 +218,9 @@ const RoomSelector = ({
                   );
                 })}
               </div>
-            </Popover.Panel>
+            </Menu.Items>
           </Transition>
-        </Popover>
+        </Menu>
       </div>
       {errors.RoomGuests && (
         <span className="error">{errors.RoomGuests.message}</span>
